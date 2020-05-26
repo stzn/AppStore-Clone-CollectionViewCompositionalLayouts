@@ -31,6 +31,21 @@ class AppStoreUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func testTabBarMenuItems() {
+        let app = XCUIApplication()
+        app.launch()
+        XCTAssert(app.staticTexts["Today"].exists)
+        app.tabBars.buttons["Games"].tap()
+        XCTAssert(app.staticTexts["Games"].exists)
+        app.tabBars.buttons["Apps"].tap()
+        XCTAssert(app.staticTexts["Apps"].exists)
+        app.tabBars.buttons["Updates"].tap()
+        XCTAssert(app.staticTexts["Updates"].exists)
+        app.tabBars.buttons["Search"].tap()
+        XCTAssert(app.staticTexts["Search"].exists)
+    }
+    
 
     func testLaunchPerformance() {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
