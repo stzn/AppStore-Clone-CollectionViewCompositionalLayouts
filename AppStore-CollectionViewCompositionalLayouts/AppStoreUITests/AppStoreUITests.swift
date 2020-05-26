@@ -23,11 +23,19 @@ class AppStoreUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func takeScreenshot(app: XCUIApplication) {
+        let screenshot = app.windows.firstMatch.screenshot()
+        let attachment = XCTAttachment(screenshot: screenshot)
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+    
     func testTabBarMenuItemsToday() {
         let app = XCUIApplication()
         app.launch()
         app.tabBars.buttons["Today"].tap()
         XCTAssert(app.staticTexts["Today"].exists)
+        takeScreenshot(app: app)
     }
     
     func testTabBarMenuItemsGames() {
@@ -35,6 +43,7 @@ class AppStoreUITests: XCTestCase {
         app.launch()
         app.tabBars.buttons["Games"].tap()
         XCTAssert(app.staticTexts["Games"].exists)
+        takeScreenshot(app: app)
     }
     
     func testTabBarMenuItemsApps() {
@@ -42,6 +51,7 @@ class AppStoreUITests: XCTestCase {
         app.launch()
         app.tabBars.buttons["Apps"].tap()
         XCTAssert(app.staticTexts["Apps"].exists)
+        takeScreenshot(app: app)
     }
     
     func testTabBarMenuItemsUpdates() {
@@ -49,6 +59,7 @@ class AppStoreUITests: XCTestCase {
         app.launch()
         app.tabBars.buttons["Updates"].tap()
         XCTAssert(app.staticTexts["Updates"].exists)
+        takeScreenshot(app: app)
     }
     
     func testTabBarMenuItemsSearch() {
@@ -56,5 +67,6 @@ class AppStoreUITests: XCTestCase {
         app.launch()
         app.tabBars.buttons["Search"].tap()
         XCTAssert(app.staticTexts["Search"].exists)
+        takeScreenshot(app: app)
     }
 }
