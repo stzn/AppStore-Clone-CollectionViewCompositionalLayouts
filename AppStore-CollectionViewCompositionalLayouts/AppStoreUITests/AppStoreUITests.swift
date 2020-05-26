@@ -28,6 +28,27 @@ class AppStoreUITests: XCTestCase {
         let attachment = XCTAttachment(screenshot: screenshot)
         attachment.lifetime = .keepAlways
         add(attachment)
+        
+        let imageData = screenshot.image.pngData()
+        if let path = failureImageDirectoryPath?
+            .appendingPathComponent("/")
+            .appendingPathComponent("\(self)_") {
+                try? imageData?.write(to: path)
+            }
+    }
+    
+    private var failureImageDirectoryPath: URL? {
+        let fileManager = FileManager.default
+
+        let path = URL(fileURLWithPath: "")
+        if !fileManager.fileExists(atPath: path.absoluteString) {
+            try? fileManager.createDirectory(
+                at: path,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
+        }
+        return path
     }
     
     func testTabBarMenuItemsToday() {
