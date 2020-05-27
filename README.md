@@ -1,3 +1,5 @@
+[![Build Status](https://app.bitrise.io/app/ab2c2a0e02d91688/status.svg?token=Dk8FjWGAlXZyqTtJOBlEEg)](https://app.bitrise.io/app/ab2c2a0e02d91688)
+
 # AppStore-Clone-CollectionViewCompositionalLayouts
 Sample project for implementing App Store.app UI with Collection View Compositional Layouts. It also works on older than iOS 12 thanks to [IBPCollectionViewCompositionalLayout](https://github.com/kishikawakatsumi/IBPCollectionViewCompositionalLayout).
 
