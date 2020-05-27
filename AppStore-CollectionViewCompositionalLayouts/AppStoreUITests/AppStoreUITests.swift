@@ -31,8 +31,7 @@ class AppStoreUITests: XCTestCase {
         
         let imageData = screenshot.image.pngData()
         if let path = failureImageDirectoryPath?
-            .appendingPathComponent("/")
-            .appendingPathComponent("\(self)_") {
+            .appendingPathComponent("/") {
                 try? imageData?.write(to: path)
             }
     }
@@ -40,7 +39,7 @@ class AppStoreUITests: XCTestCase {
     private var failureImageDirectoryPath: URL? {
         let fileManager = FileManager.default
 
-        let path = URL(fileURLWithPath: "")
+        let path = URL(fileURLWithPath: "/Users/vagrant")
         if !fileManager.fileExists(atPath: path.absoluteString) {
             try? fileManager.createDirectory(
                 at: path,
@@ -89,5 +88,14 @@ class AppStoreUITests: XCTestCase {
         app.tabBars.buttons["Search"].tap()
         XCTAssert(app.staticTexts["Search"].exists)
         takeScreenshot(app: app)
+    }
+    
+    func testLaunchPerformance() {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+                XCUIApplication().launch()
+            }
+        }
     }
 }
